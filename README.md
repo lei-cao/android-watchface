@@ -1,6 +1,14 @@
 Advanced Android Sample App
 ===================================
 
+With watch:
+
+`./adb -s 1115fb9882db1704 -d forward tcp:5601 tcp:5601`
+
+![Wear](./screenshot.png)
+
+
+
 Synchronizes weather information from OpenWeatherMap on Android Phones and Tablets. Used in the Udacity Advanced Android course.
 
 Pre-requisites
