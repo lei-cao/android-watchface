@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.android.sunshine.wear">
+
+    <uses-feature android:name="android.hardware.type.watch" />
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@android:style/Theme.DeviceDefault">
+
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <service
+            android:name=".MyService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <!--<action android:name="com.google.android.gms.wearable.BIND_LISTENER" />-->
+
+                <action android:name="com.google.android.gms.wearable.DATA_CHANGED" />
+                <data android:scheme="wear" android:host="*" android:pathPrefix="/weather" />
+            </intent-filter>
+        </service>
+
+        <service
+            android:name=".DigitalWatchFaceService"
+            android:label="@string/digital_name"
+            android:permission="android.permission.BIND_WALLPAPER" >
+            <meta-data
+                android:name="android.service.wallpaper"
+                android:resource="@xml/watch_face" />
+            <meta-data
+                android:name="com.google.android.wearable.watchface.preview"
+                android:resource="@drawable/preview_digital" />
+            <meta-data
+                android:name="com.google.android.wearable.watchface.preview_circular"
+                android:resource="@drawable/preview_digital_circular" />
+            <meta-data
+                android:name="com.google.android.wearable.watchface.companionConfigurationAction"
+                android:value="com.example.android.wearable.watchface.CONFIG_DIGITAL" />
+            <meta-data
+                android:name="com.google.android.wearable.watchface.wearableConfigurationAction"
+                android:value="com.example.android.wearable.watchface.CONFIG_DIGITAL" />
+
+            <intent-filter>
+                <action android:name="android.service.wallpaper.WallpaperService" />
+
+                <category android:name="com.google.android.wearable.watchface.category.WATCH_FACE" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
+    </application>
+
+</manifest>
